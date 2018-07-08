@@ -25,5 +25,13 @@
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}",
+      "!src/index.js",
+      "!src/dispatcher.js",
+      "!src/setUpTests.js"
+    ]
   }
 }

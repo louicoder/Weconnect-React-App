@@ -23,7 +23,7 @@ export default  class Profile extends Component{
 
     resetPassword = (e) =>{
         e.preventDefault();
-        
+        // console.log(this.state)
         // const password = document.getElementById('password').value
         const password = this.state.password
         const second_password = this.state.second_password
@@ -31,7 +31,7 @@ export default  class Profile extends Component{
         this.setState({'password':password,'second_password':second_password});
        
         if(password === second_password && (password.length > 0 && second_password.length > 0)){
-            console.log(password,second_password)
+            
             axios.put('http://127.0.0.1:5000/api/auth/reset-password',{'password':password},
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then(res=>{

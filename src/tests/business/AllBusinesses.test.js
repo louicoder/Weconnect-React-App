@@ -1,20 +1,20 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom'
-import BusinessRegistration from '../../components/business/BusinessRegistration';
+import AllBusinesses from '../../components/business/AllBusinesses';
 import axios from 'axios';
 // import Notifications from 'react-notify-toast';
 
 
-describe(<BusinessRegistration />, () => {
+describe(<AllBusinesses />, () => {
     let wrapper,component;
-    wrapper = shallow(<BusinessRegistration />);
-    // component = wrapper.find(BusinessRegistration).dive()
+    wrapper = mount(<MemoryRouter><AllBusinesses /></MemoryRouter>);
+    // component = wrapper.spyOn(AllBusinesses).dive()
     
 
     it('should find state undefined', ()=> {
         
-
+    
     });
 
     it('submit a valid form', () => {

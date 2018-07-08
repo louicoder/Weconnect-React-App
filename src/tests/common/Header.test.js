@@ -3,20 +3,22 @@ import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom'
 import Header from '../../components/common/Header';
 import axios from 'axios';
+import { isUndefined } from 'util';
 
 describe(<Header />, () => {
     let wrapper,component;
-    wrapper = shallow(<MemoryRouter><Header /></MemoryRouter>);
-    component = wrapper.find(Header).dive();
+    wrapper = mount(<MemoryRouter><Header /></MemoryRouter>);
+    // component = wrapper.find(Header).dive();
 
 
-    it('renders proper elements on the page', ()=> {
-        
-        // component.find('div').length.toBe(1)
-        expect(component.find('div').length).toBe(5)
-        // console.log(wrapper)
-        // component.find('input[name="second_password"]')
-        
+    it('html elements are rendered', ()=> {
+        // expect(wrapper.state.isAuthenticated).toEqual(undefined)
+        expect(wrapper.find('div').length).toBe(5)
+        expect(wrapper.find('li').length).toBe(1)
+        wrapper.setState({isAuthenticated:true})
+        expect(wrapper.find('li').length).toBe(1)
+        expect(wrapper.find('span').length).toBe(2)
+        // console.log(wrapper.state().isAuthenticated)d
     });
 
 })

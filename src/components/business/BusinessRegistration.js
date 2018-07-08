@@ -24,7 +24,7 @@ class BusinessRegistration extends Component{
 
     registerBusiness = (e)=>{
         e.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
         if(this.state.name !== ""){
             const business = {
                 name: this.state.business_name,
