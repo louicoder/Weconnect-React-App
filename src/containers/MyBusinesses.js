@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import MyBusinesses from '../Components/business/MyBusinesses';
+import MyBusinesses from '../components/business/MyBusinesses';
 import { isAuthenticated, notification } from '../helper/Utils'
 import {Redirect} from 'react-router-dom';
 import register_business from '../images/your_businesses.png'

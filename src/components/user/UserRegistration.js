@@ -27,7 +27,6 @@ class Registration extends Component {
 
     onSubmit = e =>{
         e.preventDefault();
-
         if(this.state.password === this.state.rpassword){
             axios.post('http://127.0.0.1:5000/api/auth/register', {
             username:this.state.username,
@@ -36,22 +35,16 @@ class Registration extends Component {
             rpassword:this.state.rpassword
             })
             .then(res =>{
-                console.log(res);
-                console.log(res.data.message);
-                console.log(res.data.headers);                
                 this.props.history.push("/login");
+                notification("success", "successfully reset password")
             })
             .catch((error) => {
                 if (error.response) {
                     notification("error", error.response.data['message'])
-                    // alert(error.response.data['message']); //message.
-                    // console.log(error.response.status); //status code
-                    // console.log(error.response.headers); //headers.
                 }
             });
         }else{
             notification("error", "passwords do not match, Try again")
-            // alert("passwords do not match, Try again");
         }
         
     };
@@ -82,7 +75,7 @@ class Registration extends Component {
                                     </div> */}
                                     <div className="form-group">
                                         <label>Username</label>
-                                        <input type="text"  name="username" value={this.state.username} onChange={e =>this.change(e)} className="form-control" placeholder="Enter Username" />
+                                        <input type="text" id="username"  name="username" value={this.state.username} onChange={e =>this.change(e)} className="form-control" placeholder="Enter Username" />
                                     </div>
 
                                     <div className="form-group">

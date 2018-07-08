@@ -13,8 +13,13 @@ export function isAuthenticated(){
 // function to extract the username to be used on the navigation bar
 export function userName(){
     const token = localStorage.getItem('token');
-    const username = jwt_decode(token)['username']
-    if (username){
+    try{
+        const username = jwt_decode(token)['username'] || "louis"
+        if (username){
+            return username;
+        }
+    }catch(Error){
+        const username = "louis"
         return username;
     }
 }

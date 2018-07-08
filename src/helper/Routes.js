@@ -1,15 +1,15 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Registration from '../Components/user/UserRegistration';
-import Login from '../Components/user/Login';
-import BusinessRegistration from '../Components/business/BusinessRegistration'
-import AllBusinesses from '../Components/business/AllBusinesses';
-import DeleteBusiness from '../Components/business/DeleteBusiness';
-import EditBusiness from '../Components/business/EditBusiness';
+import Registration from '../components/user/UserRegistration';
+import Login from '../components/user/Login';
+import BusinessRegistration from '../components/business/BusinessRegistration'
+import AllBusinesses from '../components/business/AllBusinesses';
+import DeleteBusiness from '../components/business/DeleteBusiness';
+import EditBusiness from '../components/business/EditBusiness';
 import MyBusinesses from '../containers/MyBusinesses';
-import SearchBusinesses from '../Components/business/SearchBusinesses';
-import reviews from '../Components/reviews/Viewreviews';
-import Profile from '../Components/user/Profile';
+import SearchBusinesses from '../components/business/SearchBusinesses';
+import reviews from '../components/reviews/ViewReviews';
+import Profile from '../components/user/Profile';
 
 
 const Routes = () =>(

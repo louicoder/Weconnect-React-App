@@ -64,12 +64,12 @@ class BusinessRegistration extends Component{
                             <img src={logo1} className="img img-responsive img-thumbnail" alt=""/>
                         </div>
                         <div className="col col-md-4 ">
-                            <form action="#" method="" className="">
+                            <form action="#" method="" className="" id="businessForm">
                                 <h5 className="text-muted">REGISTER YOUR BUSINESS</h5>
                                 <hr/>
                                 <div className="form-group">
                                     <label>Business Name</label>
-                                    <input type="text" name="business_name" onChange={this.change} className="form-control" placeholder="Enter Business Name" required/>
+                                    <input type="text" id="business" name="business_name" onChange={this.change} className="form-control" placeholder="Enter Business Name" required/>
                                 </div>
                                 
                                 <div className="form-group">

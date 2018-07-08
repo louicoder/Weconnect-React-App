@@ -24,12 +24,14 @@ export default  class Profile extends Component{
     resetPassword = (e) =>{
         e.preventDefault();
         
-        const password = document.getElementById('password').value
-        const second_password = document.getElementById('second_password').value
+        // const password = document.getElementById('password').value
+        const password = this.state.password
+        const second_password = this.state.second_password
+        // const second_password = document.getElementById('second_password').value
         this.setState({'password':password,'second_password':second_password});
        
         if(password === second_password && (password.length > 0 && second_password.length > 0)){
-            
+            console.log(password,second_password)
             axios.put('http://127.0.0.1:5000/api/auth/reset-password',{'password':password},
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then(res=>{
@@ -44,11 +46,12 @@ export default  class Profile extends Component{
 
         }else if(password === "" || second_password === ""){
             this.setState({'password':"",'second_password':""})
-            notification("error", "Please fill in both fields")
+            
+            // notification("error", "Please fill in both fields")
         }
         else{
            this.setState({'password':"",'second_password':""})
-           notification("error", "Passwords do not match, Try again")
+        //    notification("error", "Passwords do not match, Try again")
         }
         
 

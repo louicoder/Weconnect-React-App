@@ -1,6 +1,6 @@
 
-[![Build Status](https://travis-ci.org/louiCoder/Weconnect-React-App.svg?branch=develop)](https://travis-ci.org/louiCoder/Weconnect-React-App)
-[![Coverage Status](https://coveralls.io/repos/github/louiCoder/Weconnect-React-App/badge.svg?branch=develop)](https://coveralls.io/github/louiCoder/Weconnect-React-App?branch=develop)
+[![Build Status](https://travis-ci.org/louiCoder/react-app-example.svg?branch=master)](https://travis-ci.org/louiCoder/react-app-example)
+[![Coverage Status](https://coveralls.io/repos/github/louiCoder/react-app-example/badge.svg?branch=master)](https://coveralls.io/github/louiCoder/react-app-example?branch=master)
 
 # WE-CONNECT REACT APPLICATION
 
