@@ -28,15 +28,18 @@ describe(<Profile />, () => {
         // const notif = notification("success", "password successfully changed")
 
         // localStorage.setItem('token','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoibG91aXNhIiwiZXhwIjoxNTMxMDgzMDA3LCJpZCI6MTIsInVzZXJuYW1lIjoibG91aXNhIn0.CVZmcaH-6SkqE7bSB6LwD2QWPCmzCyTOdqSCs_PZk90')
-        // let spy = jest.spyOn(wrapper, 'resetPassword')
+        let spy = jest.spyOn(component.instance(), 'resetPassword')
         
-        // wrapper.find('input[name="password"]').simulate('change', {target: {value:'password'}})
-        // wrapper.find('input[name="second_password"]').simulate('change', {target: {value:'password'}})
-        // wrapper.find('button[type="submit"]').simulate('click', {preventDefault: (jest.fn())});
+        component.find('input[name="password"]').simulate('change', {target: {value:'password'}})
+        component.find('input[name="second_password"]').simulate('change', {target: {value:'password'}})
+        const submit = component.find('button[type="submit"]').simulate('click', {preventDefault: (jest.fn())});
         
-        // expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalled();
         // console.log(wrapper)
-        expect()
+        // expect(component.find('div').length).toBe(9)
+        // expect(component.find('form').length).toBe(1)
+        // expect(component.find('input').length).toBe(2)
+        // expect(component.find('div').length).toBe(9)
 
     });
 
