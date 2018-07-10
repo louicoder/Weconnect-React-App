@@ -6,14 +6,15 @@ import Notifications from 'react-notify-toast';
 
 export default class SearchBusinesses extends Component{
     // constructor that handles any passed props in case are passed.
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state={
             business_name:"",
             filter: "",
             filter_value:"",
             businesses:[],
-            current_page:""
+            current_page:"",
+            isAuthenticated: isAuthenticated() ? true : false
             // per_page:"",
             // total_pages:""
         }
@@ -29,9 +30,9 @@ export default class SearchBusinesses extends Component{
         }
     }
 
-    handleClick = (e) => {
-        this.setState({current_page:Number(e.target.id)})
-    }
+    // handleClick = (e) => {
+    //     this.setState({current_page:Number(e.target.id)})
+    // }
 
     // function handles searching for passed business names from the input field and makes a get request to the api.
     Search = (e) =>{
@@ -70,28 +71,28 @@ export default class SearchBusinesses extends Component{
     render(){
         // const { current_page, per_page, businesses } = this.state
 
-        const pageNumbers = [];
-        if(this.state.businesses.length > 4){
+        // const pageNumbers = [];
+        // if(this.state.businesses.length > 4){
             
-            for (let i = 1; i <= Math.ceil(this.state.businesses.length / this.state.per_page); i++) {
-                pageNumbers.push(i);
-            }
-        }else{
-            pageNumbers.push(1);
-        }
+        //     for (let i = 1; i <= Math.ceil(this.state.businesses.length / this.state.per_page); i++) {
+        //         pageNumbers.push(i);
+        //     }
+        // }else{
+        //     pageNumbers.push(1);
+        // }
         
-        const renderPageNumbers = pageNumbers.map(number => {
-        return (
-            <li className="btn btn-small btn-dark"
-            key={number}
-            id={number}
-            onClick={this.handleClick}>{number}</li>
-            );
-        });
+        // const renderPageNumbers = pageNumbers.map(number => {
+        // return (
+        //     <li className="btn btn-small btn-dark"
+        //     key={number}
+        //     id={number}
+        //     onClick={this.handleClick}>{number}</li>
+        //     );
+        // });
 
         return(
             // check whether user is authenticated and if not redirect them to the login page.
-            isAuthenticated() ? 
+            this.state.isAuthenticated ? 
             <div className="container"><br/><br/><br/>
             <Notifications/>
                     <div className="col col-md-12">
@@ -99,7 +100,7 @@ export default class SearchBusinesses extends Component{
                         {/* this is the pagination div */}
                         <div className=" d-flex justify-content-end">
 
-                            { renderPageNumbers }
+                            {/* { renderPageNumbers } */}
 
                         </div>
                         {/* endof pagination div */}
@@ -132,7 +133,7 @@ export default class SearchBusinesses extends Component{
                                             </div>
                                         
                                         <div className="align-items-md-end">
-                                            <button type="submit" className="btn btn-primary btn-lg col-md-12" onClick={this.Search}>SEARCH BUSINESS</button>
+                                            <button type="submit" name="search" className="btn btn-primary btn-lg col-md-12" onClick={this.Search}>SEARCH BUSINESS</button>
                                         </div>
                                     </form>
                             </div>

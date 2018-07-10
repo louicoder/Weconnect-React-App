@@ -13,11 +13,12 @@ export default class AllBusinesses extends Component{
         this.state = {
             businesses:[],
             review:"",
-            reviews:[]
+            reviews:[],
+            isAuthenticated: isAuthenticated() ? true : false
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         // load businesses when component is immediately rendered
         this.defaultState();
     }
@@ -73,7 +74,7 @@ export default class AllBusinesses extends Component{
         this.setState({'id':e.target.id})
     }
 
-    viewreviews = (e) => {
+    viewReviews = (e) => {
         const id = e.target.id
 
         axios.get('http://127.0.0.1:5000/api/businesses/'+id+'/reviews',
@@ -92,9 +93,36 @@ export default class AllBusinesses extends Component{
     }
 
     render(){
+        let businesses;
+        businesses = this.state.businesses.map(business =>{
+            return(
+                
+                <div className="col col-4 bg-dark text-info border-right p-3 mb-md-2" key={business.id}>                                    
+                    <h6>Business : <span className="text-white">{business.id}</span></h6>
+                    <h6>Name : <span className="text-bold"> <span className="text-white">{business.business_name}</span></span></h6>
+                    <p>Category :<span className="text-bold"> <span className="text-white">{business.category}</span></span></p>
+                    <p>Location :<span className="text-bold"> <span className="text-white">{business.location}</span></span></p>
+                    <p><span>Description:</span></p>
+                    
+                    {/* <hr style={{border:"0.5px solid white"}}/> */}
+                    <span className="text-white">{business.description}</span> <br/> <br/>
+                    
+                    <div className="container"> 
+                    <div className="row justify-content-end">
+
+                        <button type="button" className="btn btn-success ml-md-2" name="review_button" id={business.id} data-target="#review_modal" data-toggle="modal" value={business.id} onClick={this.onReview}>  Add Review</button>
+
+                        <button type="button" className="btn btn-primary ml-md-2" name="pick_reviews" id={business.id} onClick={this.viewReviews} data-target="#view_reviews" data-toggle="modal">View reviews</button>
+
+                    </div>
+                    </div>
+                    
+                </div>
+                    
+            )})
         
         return(
-            isAuthenticated() ? 
+            this.state.isAuthenticated ? 
             <div className="container">
             <Notifications/>
             <br/><br/>
@@ -118,7 +146,7 @@ export default class AllBusinesses extends Component{
                                     <hr/>
 
                                     <div className="form-group">
-                                        <textarea name="review" onChange={e =>this.change(e)} className="form-control" rows="3" placeholder="Enter brief description about your Business" value={this.state.review}>{this.state.review}</textarea>
+                                        <textarea name="review" onChange={this.change} className="form-control" rows="3" placeholder="Enter brief description about your Business" value={this.state.review}>{this.state.review}</textarea>
                                     </div>
                                     
                                 </form>
@@ -169,33 +197,7 @@ export default class AllBusinesses extends Component{
                         {/* end of review business modal */}
                         <div className="row col-md-12 mb-4  col-12 mt-4 mt-md-0"><br/><br/>
                         <Notifications />
-                        {this.state.businesses.map(business =>{
-                            return(
-                                
-                                    <div className="col col-4 bg-dark text-info border-right p-3 mb-md-2">                                    
-                                        <h6 key={business.id}>Business : <span className="text-white">{business.id}</span></h6>
-                                        <h6>Name : <span className="text-bold"> <span className="text-white">{business.business_name}</span></span></h6>
-                                        <p>Category :<span className="text-bold"> <span className="text-white">{business.category}</span></span></p>
-                                        <p>Location :<span className="text-bold"> <span className="text-white">{business.location}</span></span></p>
-                                        <p><span>Description:</span></p>
-                                        
-                                        {/* <hr style={{border:"0.5px solid white"}}/> */}
-                                        <span className="text-white">{business.description}</span> <br/> <br/>
-                                        
-                                        <div className="container"> 
-                                        <div className="row justify-content-end">
-
-                                            <button type="button" className="btn btn-success ml-md-2" name="review" id={business.id} data-target="#review_modal" data-toggle="modal" value={business.id} onClick={this.onReview}>  Add Review</button>
-
-                                            <button type="button" className="btn btn-primary ml-md-2" name="pick_reviews" id={business.id} onClick={this.viewreviews} data-target="#view_reviews" data-toggle="modal">View reviews</button>
-
-                                        </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                )})
-                        }
+                        {businesses}
 
                         </div>
                         {/* end of dynamically created div */}

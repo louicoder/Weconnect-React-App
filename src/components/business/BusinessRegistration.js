@@ -24,6 +24,7 @@ class BusinessRegistration extends Component{
 
     registerBusiness = (e)=>{
         e.preventDefault();
+        
         // console.log(this.state)
         if(this.state.name !== ""){
             const business = {
@@ -55,7 +56,7 @@ class BusinessRegistration extends Component{
     // function renders the registration page for a business
     render(){
         return(
-            isAuthenticated() ? 
+            this.state.isAuthenticated ? 
             <div className="container">
             <Notifications/>
                 <br/><br/>
@@ -69,7 +70,7 @@ class BusinessRegistration extends Component{
                                 <hr/>
                                 <div className="form-group">
                                     <label>Business Name</label>
-                                    <input type="text" id="business" name="business_name" onChange={this.change} className="form-control" placeholder="Enter Business Name" required/>
+                                    <input type="text" id="business" name="business_name" onChange={this.change} className="form-control business_name" placeholder="Enter Business Name" required/>
                                 </div>
                                 
                                 <div className="form-group">
