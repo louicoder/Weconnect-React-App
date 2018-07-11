@@ -11,13 +11,6 @@ describe(<AllBusinesses />, () => {
 
     beforeEach(() => {
         
-        axios.post.mockImplementationOnce(
-            jest.fn(() => Promise.resolve({
-                data:{
-                    message:'business successfully created'
-                }
-            }))
-        )
         axios.get.mockImplementation(
             jest.fn(() => Promise.resolve({
                 data:{
@@ -35,12 +28,13 @@ describe(<AllBusinesses />, () => {
                 }
             }))
         )
+
         wrapper = shallow(<MemoryRouter><AllBusinesses /></MemoryRouter>);
         component = wrapper.find(AllBusinesses).dive();
     });
     
 
-    it('sets authentcation state to true', ()=> {
+    it('sets authentcation state to false', ()=> {
         component.setState({isAuthenticated:true,
     
             'businesses':[{
@@ -66,10 +60,8 @@ describe(<AllBusinesses />, () => {
                     "user_id": 2
                     }]
         })
-        // console.log(component.find('textarea'))
-        let spy = jest.spyOn(component.instance(), 'addReview')
-        // console.log(component.state())
-        component.find('textarea').simulate('change', {target: {value:'louis'}})
+        // let spy = jest.spyOn(component.instance(), 'addReview')
+        // component.find('textarea').simulate('change', {target: {value:'louis'}})
         // component.find('')
         // expect(component.find)
         // component.find('input[name="location"]').simulate('change', {target: {value:'location'}})
@@ -82,14 +74,9 @@ describe(<AllBusinesses />, () => {
         // expect(component.find('#review_modal').length).toBe(1)
     });
 
-    it('add review modal', ()=> {
-        axios.post.mockImplementationOnce(
-            jest.fn(() => Promise.resolve({
-                data:{
-                    message:'business successfully created'
-                }
-            }))
-        )
+    it('redirects to login page', ()=> {
+        expect(component.state().isAuthenticated).toEqual(false)
+        expect(component.find(Redirect).length).toEqual(1)
     })
 
     
