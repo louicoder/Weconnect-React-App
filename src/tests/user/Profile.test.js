@@ -11,6 +11,14 @@ describe(<Profile />, () => {
     component = wrapper.find(Profile).dive();
 
     it('renders proper elements on the page', ()=> {
+        axios.put.mockImplementation(
+            jest.fn(() => Promise.resolve({
+                data:{
+                    'message':'business successfully updated'
+                }
+            }))
+        )
+        
         let spy = jest.spyOn(component.instance(), 'resetPassword')
         
         component.find('input[name="password"]').simulate('change', {target: {value:'password'}})

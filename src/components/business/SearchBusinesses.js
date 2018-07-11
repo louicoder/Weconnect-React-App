@@ -30,9 +30,6 @@ export default class SearchBusinesses extends Component{
         }
     }
 
-    // handleClick = (e) => {
-    //     this.setState({current_page:Number(e.target.id)})
-    // }
 
     // function handles searching for passed business names from the input field and makes a get request to the api.
     Search = (e) =>{
@@ -55,8 +52,6 @@ export default class SearchBusinesses extends Component{
             .then(json =>{
             this.setState({'businesses':json.data['businesses'],business_name:"",filter: "",filter_value:""}) 
             
-            this.setState({per_page:4})
-            this.setState({})
             })
             .catch(error =>{
                 if(error.response){

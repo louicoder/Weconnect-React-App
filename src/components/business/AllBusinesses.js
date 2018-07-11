@@ -80,7 +80,6 @@ export default class AllBusinesses extends Component{
         axios.get('http://127.0.0.1:5000/api/businesses/'+id+'/reviews',
         {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
         .then((res) => {
-            console.log(res.data['reviews'])
             this.setState({'reviews':res.data['reviews']})
         })
         .catch(error => {
@@ -93,7 +92,7 @@ export default class AllBusinesses extends Component{
     }
 
     render(){
-        let businesses;
+        let businesses, reviews;
         businesses = this.state.businesses.map(business =>{
             return(
                 
@@ -120,6 +119,18 @@ export default class AllBusinesses extends Component{
                 </div>
                     
             )})
+            
+        reviews = this.state.reviews.map(reviews => {
+            return(
+                Object.keys(reviews).length > 0 ?
+                <div className="card-body">
+                    <h6>REVIEW: {reviews.id}</h6>
+                    <p key={reviews.id}></p>
+                    <p>{reviews.review}</p>
+                    <hr/>
+                </div> : <div><p>No reviews for this business</p></div>
+                )       
+            })
         
         return(
             this.state.isAuthenticated ? 
@@ -173,17 +184,7 @@ export default class AllBusinesses extends Component{
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    {this.state.reviews.map(reviews => {
-                                        return(
-                                            Object.keys(reviews).length > 0 ?
-                                            <div className="card-body">
-                                                <h6>REVIEW: {reviews.id}</h6>
-                                                <p key={reviews.id}></p>
-                                                <p>{reviews.review}</p>
-                                                <hr/>
-                                            </div> : <div><p>No reviews for this business</p></div>
-                                        )
-                                    })}
+                                    { reviews }
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -98,7 +98,7 @@ const MyBusinesses = ({
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary" onClick={addReview}>Review Business</button>
+                                <button type="button" name="add_review" className="btn btn-primary" onClick={addReview}>Review Business</button>
                                 
                             </div>
                             </div>

@@ -7,8 +7,8 @@ import register_business from '../images/your_businesses.png'
 
 export default class MyBusinessesContainer extends Component{
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state={
             businesses:[],
             name:"",
@@ -23,7 +23,7 @@ export default class MyBusinessesContainer extends Component{
 
     // component handles state before the component is rendered.
     componentWillMount(){
-        this.defaultState();
+        // this.defaultState();
     }
 
     // function manages the input state especially when a user cannot type into the input area.
