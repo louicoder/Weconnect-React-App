@@ -18,7 +18,6 @@ describe(<Profile />, () => {
                 }
             }))
         )
-
         let spy = jest.spyOn(component.instance(), 'resetPassword')
         
         component.find('input[name="password"]').simulate('change', {target: {value:'password'}})
