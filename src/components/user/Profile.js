@@ -48,11 +48,11 @@ export default  class Profile extends Component{
 
         }else if(password === "" || second_password === ""){
             this.setState({'password':"",'second_password':""})
-            notification("error", "Please fill in both fields")
+            // notification("error", "Please fill in both fields")
         }
         else{
            this.setState({'password':"",'second_password':""})
-           notification("error", "Passwords do not match, Try again")
+        //    notification("error", "Passwords do not match, Try again")
         }
         
 
