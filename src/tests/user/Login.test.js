@@ -8,10 +8,7 @@ import axios from 'axios';
 
 describe(<Login />, () => {
     let wrapper,component;
-    //  wrapper = mount(<MemoryRouter><Login /></MemoryRouter>);
-    // const mock = new MockAdapter(axios);
-        
-
+   
     beforeEach(() => {
         wrapper = shallow(
             <MemoryRouter><Login /></MemoryRouter>
@@ -25,7 +22,7 @@ describe(<Login />, () => {
         axios.post.mockImplementationOnce(
             jest.fn(() => Promise.resolve({
                 data:{
-                    token: 'hsdjhbsjhdbs',
+                    token: 'hsdjhbsjhdbsdfsdfsdfsdsddsdcsdcsdcsdcsdcsdcsdcsdcsdcs',
                     message:'successfully logged in'
                 }
             }))

@@ -4,6 +4,7 @@ import Notifications from 'react-notify-toast';
 import {notification} from '../../helper/Utils';
 import axios from 'axios';
 import {userName} from '../../helper/Utils'
+import {BASE_URL} from '../../helper/Url'
 
 export default  class Profile extends Component{
 
@@ -23,6 +24,7 @@ export default  class Profile extends Component{
 
     resetPassword = (e) =>{
         e.preventDefault();
+        
         // console.log(this.state)
         // const password = document.getElementById('password').value
         const password = this.state.password
@@ -32,7 +34,7 @@ export default  class Profile extends Component{
        
         if(password === second_password && (password.length > 0 && second_password.length > 0)){
             
-            axios.put('http://127.0.0.1:5000/api/auth/reset-password',{'password':password},
+            axios.put(BASE_URL+'api/auth/reset-password',{'password':password},
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then(res=>{
                 this.setState({'password':"",'second_password':""})
@@ -46,12 +48,11 @@ export default  class Profile extends Component{
 
         }else if(password === "" || second_password === ""){
             this.setState({'password':"",'second_password':""})
-            
-            // notification("error", "Please fill in both fields")
+            notification("error", "Please fill in both fields")
         }
         else{
            this.setState({'password':"",'second_password':""})
-        //    notification("error", "Passwords do not match, Try again")
+           notification("error", "Passwords do not match, Try again")
         }
         
 

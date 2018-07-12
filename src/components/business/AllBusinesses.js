@@ -5,11 +5,13 @@ import {Redirect} from 'react-router-dom';
 import Notifications from 'react-notify-toast';
 import {notification} from '../../helper/Utils'
 import all_businesses from '../../images/all_businesses.png'
+import {BASE_URL} from '../../helper/Url'
+
 
 export default class AllBusinesses extends Component{
 
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             businesses:[],
             review:"",
@@ -33,7 +35,7 @@ export default class AllBusinesses extends Component{
     // function queries businesses to be rendered by the component.
     defaultState = () => {
         // e.preventDefault();
-        axios.get('http://127.0.0.1:5000/api/businesses',
+        axios.get(BASE_URL+'api/businesses',
         {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
         .then(json =>{
             this.setState({'businesses':json['data']['businesses']});
@@ -53,12 +55,11 @@ export default class AllBusinesses extends Component{
         if(review === ""){
             notification("warning", "Field is empty")
         }else{
-            axios.post('http://127.0.0.1:5000/api/businesses/'+id+'/reviews',{'review':this.state.review},
+            axios.post(BASE_URL+'api/businesses/'+id+'/reviews',{'review':this.state.review},
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then((res) => {
                 this.setState({'review':""})
-                notification("success", res.data['message']);
-                
+                notification("success", res.data['message']);                
             })
             .catch(error => {                
                 // this.defaultState();
@@ -77,7 +78,7 @@ export default class AllBusinesses extends Component{
     viewReviews = (e) => {
         const id = e.target.id
 
-        axios.get('http://127.0.0.1:5000/api/businesses/'+id+'/reviews',
+        axios.get(BASE_URL+'api/businesses/'+id+'/reviews',
         {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
         .then((res) => {
             this.setState({'reviews':res.data['reviews']})

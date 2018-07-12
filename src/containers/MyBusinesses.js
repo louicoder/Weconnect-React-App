@@ -4,6 +4,7 @@ import MyBusinesses from '../components/business/MyBusinesses';
 import { isAuthenticated, notification } from '../helper/Utils'
 import {Redirect} from 'react-router-dom';
 import register_business from '../images/your_businesses.png'
+import {BASE_URL} from '../helper/Url'
 
 export default class MyBusinessesContainer extends Component{
 
@@ -40,7 +41,7 @@ export default class MyBusinessesContainer extends Component{
 
     // fnuction is responsible for returning all your owned businesses and then updates the state
     defaultState = () =>{
-        axios.get('http://127.0.0.1:5000/api/mybusinesses',
+        axios.get(BASE_URL+'api/mybusinesses',
         {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
         .then(json =>{
             this.setState({'businesses':json['data']['businesses']});
@@ -60,7 +61,7 @@ export default class MyBusinessesContainer extends Component{
         if(review === ""){
             notification("warning", "Field is empty")
         }else{
-            axios.post('http://127.0.0.1:5000/api/businesses/'+id+'/reviews',{'review':this.state.review},
+            axios.post(BASE_URL+'api/businesses/'+id+'/reviews',{'review':this.state.review},
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then((res) =>{
                 this.setState({'review':""})
@@ -86,7 +87,7 @@ export default class MyBusinessesContainer extends Component{
         }
         else{
             // api call to update the selected business for update.
-            axios.put('http://127.0.0.1:5000/api/businesses/'+id,{'name':this.state.name, 'location':this.state.location,'category':this.state.category,'description':this.state.description},
+            axios.put(BASE_URL+'api/businesses/'+id,{'name':this.state.name, 'location':this.state.location,'category':this.state.category,'description':this.state.description},
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then((res) =>{
                 // this.defaultState();
@@ -114,7 +115,7 @@ export default class MyBusinessesContainer extends Component{
         const id = e.target.id
         
         this.setState({'id':e.target.id,'name':'','location':'','category':'','description':''})
-        axios.get("http://127.0.0.1:5000/api/businesses/"+id,
+        axios.get(BASE_URL+'api/businesses/'+id,
         {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*','Origins':'*'}})
         .then(res=>{
             this.setState({
@@ -139,9 +140,9 @@ export default class MyBusinessesContainer extends Component{
         e.preventDefault();
         const id = e.target.id;
 
-        if (window.confirm('Are you sure you want to save this thing into the database?')){
+        if (window.confirm('Are you sure you want to delete this business from your businesses?')){
             // make the api call to delete the business with that id.
-            axios.delete('http://127.0.0.1:5000/api/businesses/'+id,
+            axios.delete(BASE_URL+'api/businesses/'+id,
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
             .then(res=>{
                 notification("success", res.data['message']);
@@ -162,7 +163,7 @@ export default class MyBusinessesContainer extends Component{
     viewreviews = (e) => {
         const id = e.target.id
 
-        axios.get('http://127.0.0.1:5000/api/businesses/'+id+'/reviews',
+        axios.get(BASE_URL+'api/businesses/'+id+'/reviews',
         {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}})
         .then((res) => {
             console.log(res.data['reviews'])

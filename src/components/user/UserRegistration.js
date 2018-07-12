@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { isAuthenticated } from '../../helper/Utils';
 import {notification} from '../../helper/Utils';
 import Notifications from 'react-notify-toast';
-
+import {BASE_URL} from '../../helper/Url'
 
 class Registration extends Component {
 
@@ -28,7 +28,7 @@ class Registration extends Component {
     onSubmit = e =>{
         e.preventDefault();
         if(this.state.password === this.state.rpassword){
-            axios.post('http://127.0.0.1:5000/api/auth/register', {
+            axios.post(`${BASE_URL}api/auth/register`, {
             username:this.state.username,
             email:this.state.email,
             password:this.state.password,
@@ -40,6 +40,7 @@ class Registration extends Component {
             })
             .catch((error) => {
                 if (error.response) {
+                    console.log(error.response.data)
                     notification("error", error.response.data['message'])
                 }
             });

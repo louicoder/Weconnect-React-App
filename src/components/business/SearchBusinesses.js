@@ -3,6 +3,7 @@ import axios from 'axios';
 import { isAuthenticated, notification} from '../../helper/Utils';
 import {Redirect} from 'react-router-dom';
 import Notifications from 'react-notify-toast';
+import {BASE_URL} from '../../helper/Url'
 
 export default class SearchBusinesses extends Component{
     // constructor that handles any passed props in case are passed.
@@ -13,7 +14,6 @@ export default class SearchBusinesses extends Component{
             filter: "",
             filter_value:"",
             businesses:[],
-            current_page:"",
             isAuthenticated: isAuthenticated() ? true : false
             // per_page:"",
             // total_pages:""
@@ -47,7 +47,7 @@ export default class SearchBusinesses extends Component{
         }
         else{
             // make api call to get all business that match name input in the field and if with any filters.
-            axios.get('http://127.0.0.1:5000/api/businesses/search?q='+business_name+'&filter_type='+filter+'&filter_value='+filter_value,
+            axios.get(BASE_URL+'api/businesses/search?q='+business_name+'&filter_type='+filter+'&filter_value='+filter_value,
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*', 'origins':"*"}})
             .then(json =>{
             this.setState({'businesses':json.data['businesses'],business_name:"",filter: "",filter_value:""}) 

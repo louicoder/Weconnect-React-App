@@ -4,7 +4,7 @@ import {isAuthenticated} from '../../helper/Utils';
 import {Link} from 'react-router-dom';
 import Notifications from 'react-notify-toast';
 import {notification} from '../../helper/Utils';
-// import instance from '../../config'
+import {BASE_URL} from '../../helper/Url'
 
 class Login extends Component {
 
@@ -26,7 +26,7 @@ class Login extends Component {
 
     login = (e) =>{
         e.preventDefault()
-        axios.post('http://127.0.0.1:5000/api/auth/login',{username: this.state.username,password: this.state.password})
+        axios.post(BASE_URL+'api/auth/login',{username: this.state.username,password: this.state.password})
         .then(res =>{
             console.log(res);
             localStorage.setItem('token', res.data['token']);

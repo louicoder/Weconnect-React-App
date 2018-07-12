@@ -60,14 +60,6 @@ describe(<MyBusinesses />, () => {
             }))
         )
         
-        
-        // let spy = jest.spyOn(MyBusinesses, 'addReview')
-        // console.log(component.instance())
-        // const btn = component.find('button[name="add_review"]')
-        // btn.simulate('click', )
-        // expect(spy).toHaveBeenCalled()
     })
-    
-   
 
 })

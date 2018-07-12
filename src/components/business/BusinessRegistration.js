@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import logo1 from '../../images/logo1.jpg';
 import Notifications from 'react-notify-toast';
+import {BASE_URL} from '../../helper/Url'
+
 
 class BusinessRegistration extends Component{
 
@@ -34,7 +36,7 @@ class BusinessRegistration extends Component{
                 description:this.state.description
             }
     
-            axios.post('http://127.0.0.1:5000/api/businesses', business,
+            axios.post(BASE_URL+'api/businesses', business,
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'}}
             )
             .then(res =>{
