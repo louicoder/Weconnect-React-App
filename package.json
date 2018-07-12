@@ -33,8 +33,9 @@
       "src/**/*.{js,jsx,mjs}",
       "!src/index.js",
       "!src/dispatcher.js",
-      "!src/setUpTests.js",
-      "!src/conatainers/MyBusinesses.js"
+      "!src/setupTests.js",
+      "!src/containers/MyBusinesses.js",
+      "!src/helper/Utils.js"
     ]
   }
 }
