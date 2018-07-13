@@ -32,7 +32,7 @@ $ npm test
 $ npm test -- --coverage
 ```
 
-## Guidelines on navigation first time users
+## Guidelines on navigation for first time users
 - Register with a new account on the registration this can be accessed by adding `/register` to the url. Fields below are mandatory.
 ```
 username, email and password
@@ -49,7 +49,11 @@ username, email and password
 | /register | New user registration | 
 | /login | User login | 
 | /business | New business registration | 
-| /allbusinesses | All registered businesses | 
-| /mybusinesses | User's owned businesses | 
+| /allbusinesses | All registered businesses (viewing businesses, reviewing businesses and viewing all reviews for a selected business) | 
+| /mybusinesses | User's owned businesses (viewing, editing, adding reviews and viewing reviews of owned business, ) | 
 | /search | Searching businesses | 
 | /profile | User's profile and User's reset password section | 
+
+```
+Author - Musanje Louis Michael
+```
