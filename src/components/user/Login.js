@@ -28,7 +28,6 @@ class Login extends Component {
         e.preventDefault()
         axios.post(BASE_URL+'api/auth/login',{username: this.state.username,password: this.state.password})
         .then(res =>{
-            console.log(res);
             localStorage.setItem('token', res.data['token']);
             this.props.history.replace('/business');
         })
@@ -38,7 +37,6 @@ class Login extends Component {
             }
         })
     };
-
 
     //function renders the login component onto the html page
     render() {

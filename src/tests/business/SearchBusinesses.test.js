@@ -33,26 +33,14 @@ describe(<SearchBusinesses />, () => {
     });
 
     it('renders proper elements on the page', ()=> {
-        
         component.setState({isAuthenticated:true})
-        let spy = jest.spyOn(component.instance(), 'Search')
-        component.setState({business_name:'business',filter:'location',filter_value:'kampala'})
-        
-        component.find('input[name="business_name"]').simulate('change', {target: {value:'business 1'}})
-        component.find('select[name="filter"]').simulate('change', {target: {value:'location'}})
-        component.find('input[name="filter_value"]').simulate('change', {target: {value:'category'}})
-        component.find('button[type="submit"]').simulate('click', {preventDefault: jest.fn()});
-        expect(spy).toHaveBeenCalled();
-        
+        expect(component.find('div').length).toEqual(11)
     });
 
     it('check that state is undefined', () => {
-        // component.setState({filter:component.find('select[name="filter"]').simulate('change', {target: {value:'location'}})})
-        // expect(component.state('business_name')).toEqual("business 1")
-        // expect(component.state('filter')).toEqual("location")
-        // expect(component.state('filter_value')).toEqual("kampala")
-
-        // let spy = jest.spyOn(component.instance(), 'Search')
+        expect(component.state('business_name')).toEqual("")
+        expect(component.state('filter')).toEqual("")
+        expect(component.state('filter_value')).toEqual("")
         
     })
 

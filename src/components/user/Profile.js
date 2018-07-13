@@ -46,14 +46,14 @@ export default  class Profile extends Component{
                 notification("error",error.response.data['message']);
             })
 
-        }else if(password === "" || second_password === ""){
-            this.setState({'password':"",'second_password':""})
-            // notification("error", "Please fill in both fields")
-        }
-        else{
-           this.setState({'password':"",'second_password':""})
-        //    notification("error", "Passwords do not match, Try again")
-        }
+            }else if(password === "" || second_password === ""){
+                alert("Please fill in both fields")
+                this.setState({'password':"",'second_password':""})
+            }
+            else{
+                notification("error", "Passwords do not match, Try again")
+                this.setState({'password':"",'second_password':""})
+            }
         
 
     }
