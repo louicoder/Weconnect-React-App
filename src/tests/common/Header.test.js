@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom'
-import Header from '../../components/common/Header';
+import Header from '../../components/layout/Header';
 import axios from 'axios';
 import { isUndefined } from 'util';
 

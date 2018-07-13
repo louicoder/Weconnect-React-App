@@ -38,6 +38,13 @@ describe(<BusinessRegistration />, () => {
         
     });
 
+    it('resets state values to empty strings', ()=> {
+        expect(component.state().business_name.length).toEqual(0)
+        expect(component.state().location.length).toEqual(0)
+        expect(component.state().category.length).toEqual(0)
+        expect(component.state().description.length).toEqual(0)
+        expect(component.state().isAuthenticated).toEqual(true)
+    });
     
 
 })

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom'
-import Footer from '../../components/common/Footer';
+import Footer from '../../components/layout/Footer';
 import axios from 'axios';
 
 describe(<Footer />, () => {

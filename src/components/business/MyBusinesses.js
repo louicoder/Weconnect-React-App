@@ -1,5 +1,7 @@
 import React from 'react';
 import Notifications from 'react-notify-toast';
+import { MyBusinessActions } from '../business/MyBusinessActions'
+import {AllbusinessActions} from '../business/AllBusinessActions'
 
 const MyBusinesses = ({ 
     name,
@@ -11,13 +13,15 @@ const MyBusinesses = ({
     businesses,
     isAuthenticated, 
     register_business, 
-    onChange, 
+    onChange,
     onUpdateBusiness, 
     addReview, 
     onEdit,
     onDelete,
     onReview,
-    viewreviews
+    viewreviews,
+    viewReviews,
+    path = ''
 }) => (
         <div className="container">
         <Notifications />
@@ -25,11 +29,12 @@ const MyBusinesses = ({
             <div className="container col-md-12">
                 <div className="row">
 
+                    {path === '' ?
                     <div className="col col-md-10 border p-0 mb-3">
                        {/* Header image -> YOUR BUSINESSES */}
                         <img src={register_business} className="img" alt=""/>
                       
-                    </div>
+                    </div>:''}
                     
                     {/* modal window for editing business */}
                     <div className="modal fade" id="edit_modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
@@ -89,7 +94,8 @@ const MyBusinesses = ({
                                 <hr/>
 
                                 <div className="form-group">
-                                    <textarea name="review" onChange={onChange} className="form-control" rows="3" placeholder="Enter brief description about your Business" value={review}>{review}</textarea>
+                                    <textarea name="review" onChange={onChange} className="form-control" rows="3" placeholder="Enter brief description about your Business" value={review}>{review}
+                                    </textarea>
                                 </div>
                                 
                                 
@@ -160,18 +166,22 @@ const MyBusinesses = ({
                                         {/* <hr style={{border:"0.5px solid white"}}/> */}
                                         <span className="text-white">{business.description}</span> <br/> <br/>
                                         
-                                        <div className="container"> 
-                                        <div className="row justify-content-end">
-                                            <button type="button" className="btn btn-primary ml-md-2" onClick={onEdit} id={business.id} style={{zIndex: 100}} data-toggle="modal" data-target="#edit_modal"> Edit</button>
-
-                                            <button type="button" className="btn btn-danger ml-md-2" onClick={onDelete} name="delete" id={business.id}>Delete</button>
-
-                                            <button type="button" className="btn btn-success ml-md-2" name="review" id={business.id} data-target="#review_modal" data-toggle="modal" value={business.id} onClick={onReview}> Add Review</button>
-
-                                            <button type="button" className="btn btn-info ml-md-2" name="pick_reviews" id={business.id} data-target="#view_reviews" data-toggle="modal" value={business.id} onClick={viewreviews}>reviews</button>
-                                        </div>
-                                        </div>
-                                        
+                                        {path === '' ? 
+                                        <MyBusinessActions 
+                                            business={business} 
+                                            onEdit={onEdit}
+                                            onDelete={onDelete}
+                                            onReview={onReview}
+                                            viewreviews={viewreviews}
+                                        />
+                                        :
+                                        <AllbusinessActions 
+                                            business = {business}
+                                            onReview = {onReview}
+                                            addReview= {addReview}
+                                            viewReviews = {viewReviews}
+                                        />
+                                        }
                                     </div>
                                     
                                 )})

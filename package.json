@@ -35,9 +35,11 @@
       "!src/dispatcher.js",
       "!src/setupTests.js",
       "!src/containers/MyBusinesses.js",
-      "!src/components/business/SearchBusinesses.js",
       "!src/components/business/MyBusinesses.js",
+      "!src/components/business/MyBusinessActions.js",
       "!src/components/business/AllBusinesses.js",
+      "!src/components/business/AllBusinessActions.js",
+      "!src/components/business/SearchBusinesses.js",
       "!src/helper/Utils.js"
     ]
   }
