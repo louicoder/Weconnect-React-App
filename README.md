@@ -37,10 +37,16 @@ $ npm test -- --coverage
 ```
 username, email and password
 ```
+## Screenshot for registration page
+![Application wireframe](src/images/registration.png)
+
 - Log into the application by entering your username and password accessed by adding route below to the url
 ```
 /login
 ```
+
+## Screenshot for login page
+![Application wireframe](src/images/login.png)
 
 ## Other important links.
 
