@@ -27,7 +27,6 @@ describe(<BusinessRegistration />, () => {
 
     it('renders proper elements on the page', ()=> {
         component.setState({isAuthenticated:true})
-        // console.log(component.find('textarea[name="description"]'))
         let spy = jest.spyOn(component.instance(), 'registerBusiness')
         
         component.find('input[name="business_name"]').simulate('change', {target: {value:'louis'}})

@@ -60,18 +60,7 @@ describe(<AllBusinesses />, () => {
                     "user_id": 2
                     }]
         })
-        // let spy = jest.spyOn(component.instance(), 'addReview')
-        // component.find('textarea').simulate('change', {target: {value:'louis'}})
-        // component.find('')
-        // expect(component.find)
-        // component.find('input[name="location"]').simulate('change', {target: {value:'location'}})
-        // component.find('input[name="category"]').simulate('change', {target: {value:'category'}})
-        // component.find('textarea[name="description"]').simulate('change', {target: {value:'description'}})
-        // component.find('button[name="review"]').simulate('click', {preventDefault: jest.fn()});
-        // expect(spy).toHaveBeenCalled();
-        // const reviewButton = component.find('.btn-success')
-        // reviewButton.simulate('submit')
-        // expect(component.find('#review_modal').length).toBe(1)
+
     });
 
     it('redirects to login page', ()=> {
