@@ -34,15 +34,7 @@ describe(<SearchBusinesses />, () => {
 
     it('renders proper elements on the page', ()=> {
         
-        component.setState({isAuthenticated:true})
-        let spy = jest.spyOn(component.instance(), 'Search')
-        component.setState({business_name:'business',filter:'location',filter_value:'kampala'})
-        
-        component.find('input[name="business_name"]').simulate('change', {target: {value:'business 1'}})
-        component.find('select[name="filter"]').simulate('change', {target: {value:'location'}})
-        component.find('input[name="filter_value"]').simulate('change', {target: {value:'category'}})
-        component.find('button[type="submit"]').simulate('click', {preventDefault: jest.fn()});
-        expect(spy).toHaveBeenCalled();
+    
         
     });
 
