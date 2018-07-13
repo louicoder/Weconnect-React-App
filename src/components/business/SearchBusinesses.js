@@ -33,6 +33,7 @@ export default class SearchBusinesses extends Component{
         }
     }
 
+    // function that handles the next page onClick event
     Next = () => {
         
         if(this.state.next_page > this.state.total_pages){
@@ -62,12 +63,14 @@ export default class SearchBusinesses extends Component{
                 
                 })
                 .catch(error => {
-                    console.log(error.response)
+                    // console.log(error.response)
+                    notification("error", error.response);
                 })
         }       
         
     }
 
+    // function that handles the previous page onClick event
     Previous = () => {
 
         if(this.state.businesses.length === 0){
@@ -110,7 +113,6 @@ export default class SearchBusinesses extends Component{
     Search = (e) =>{
         e.preventDefault();
         const business_name = this.state.business_name;
-        console.log(this.state)
         const filter = this.state.filter;
         const filter_value = this.state.filter_value;
         // this.setState({current_page:1})
@@ -123,7 +125,6 @@ export default class SearchBusinesses extends Component{
             notification('error','make sure You have entered the filter value');
         }
         else{
-            // this.setState({current_page:""})
             // make api call to get all business that match name input in the field and if with any filters.
             axios.get(BASE_URL+'api/businesses/search?q='+business_name+'&filter_type='+filter+'&filter_value='+filter_value+'&page='+this.state.current_page,
             {'headers':{'x-access-token':localStorage.getItem('token'), 'Content-Type':'application/json','Access-Control-Allow-Origin': '*', 'origins':"*"}})
@@ -142,6 +143,7 @@ export default class SearchBusinesses extends Component{
             
             })
             .catch(error =>{
+                // in case of any errors, they will be handled here.
                 if(error.response){
                     notification("error",error.response.data['message'])
                     this.setState({business_name:'',filter:'',filter_value:''})
@@ -151,6 +153,7 @@ export default class SearchBusinesses extends Component{
       
     }
 
+    // render function below handles the rendering of the search component.
     render(){
 
         let business_results = this.state.businesses.map(business =>{

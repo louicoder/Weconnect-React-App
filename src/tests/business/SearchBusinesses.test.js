@@ -33,18 +33,14 @@ describe(<SearchBusinesses />, () => {
     });
 
     it('renders proper elements on the page', ()=> {
-        
-    
-        
+        component.setState({isAuthenticated:true})
+        expect(component.find('div').length).toEqual(11)
     });
 
     it('check that state is undefined', () => {
-        // component.setState({filter:component.find('select[name="filter"]').simulate('change', {target: {value:'location'}})})
-        // expect(component.state('business_name')).toEqual("business 1")
-        // expect(component.state('filter')).toEqual("location")
-        // expect(component.state('filter_value')).toEqual("kampala")
-
-        // let spy = jest.spyOn(component.instance(), 'Search')
+        expect(component.state('business_name')).toEqual("")
+        expect(component.state('filter')).toEqual("")
+        expect(component.state('filter_value')).toEqual("")
         
     })
 
