@@ -27,8 +27,8 @@ class Login extends Component {
     }
     
     onSendEmail = () => {
-        
-        axios.post(BASE_URL+'api/auth/reset-password-email/'+this.state.username)
+        // https://weconnect-react-app.herokuapp.com/
+        axios.post('https://weconnect-react-app.herokuapp.com/api/auth/reset-password-email/'+this.state.username)
         .then(res =>{
             this.setState({message:res.data['message'], color:'success',username:''})
             notification('success', this.state.message)
