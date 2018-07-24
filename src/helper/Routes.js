@@ -7,6 +7,7 @@ import AllBusinesses from '../components/business/AllBusinesses';
 import MyBusinesses from '../containers/MyBusinesses';
 import SearchBusinesses from '../components/business/SearchBusinesses';
 import Profile from '../components/user/Profile';
+import ResetPassword from '../components/user/ResetPassword'
 
 
 const Routes = () =>(
@@ -21,6 +22,9 @@ const Routes = () =>(
             <Route eaxct path="/mybusinesses" component={MyBusinesses}/>
             <Route exact path="/search" component={SearchBusinesses}/>
             <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/reset-password-email/:username" component={ResetPassword}/>
+            <Route exact path="/reset-password-email/" component={Login}/>
+            <Route exact path="/reset-password-email" component={Login}/>
 
         </Switch>
     </div>

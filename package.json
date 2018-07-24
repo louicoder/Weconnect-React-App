@@ -40,6 +40,12 @@
       "!src/components/business/AllBusinesses.js",
       "!src/components/business/AllBusinessActions.js",
       "!src/components/business/SearchBusinesses.js",
+      "!src/components/user/ResetPassword.js",
+      "!src/components/user/ResetPasswordModal.js",
+      "!src/components/user/Login.js",
+      "!src/components/business/ViewReviewsModal.js",
+      "!src/components/business/AddReviewModal.js",
+      "!src/components/business/EditBusinessModal.js",
       "!src/helper/Utils.js"
     ]
   }
