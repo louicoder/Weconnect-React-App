@@ -28,7 +28,7 @@ class Registration extends Component {
     onSubmit = e =>{
         e.preventDefault();
         if(this.state.password === this.state.rpassword){
-            axios.post(`${BASE_URL}api/auth/register`, {
+            axios.post(BASE_URL+'api/auth/register', {
             username:this.state.username,
             email:this.state.email,
             password:this.state.password,
