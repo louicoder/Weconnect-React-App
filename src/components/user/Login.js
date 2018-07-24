@@ -30,7 +30,7 @@ class Login extends Component {
         
         axios.post(BASE_URL+'api/auth/reset-password-email/'+this.state.username)
         .then(res =>{
-            this.setState({message:res.data['message'], color:'success'})
+            this.setState({message:res.data['message'], color:'success',username:''})
             notification('success', this.state.message)
         })
         .catch(error =>{

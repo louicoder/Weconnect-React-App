@@ -34,19 +34,27 @@ export default class ResetPassword extends Component {
     onUpdate = (e) => {
         e.preventDefault()
 
-        if (!this.props.match.params.username) {
-            alert('no username given')
-        }
-        else if (this.state.secret_code.length === 0) {
+        if (this.state.secret_code.length === 0) {
             notification('error', 'Secret code field should not be left empty')
         }
+        else if (this.state.newPassword.length === 0 && this.state.repeatedPassword.length === 0) {
+            document.getElementById('newPassword').value = ""
+            document.getElementById('repeatedPassword').value = ""
+            notification('error', 'Password fields are empty')
+        }
         else if (this.state.newPassword.length === 0 || this.state.repeatedPassword.length === 0) {
+            document.getElementById('newPassword').value = ""
+            document.getElementById('repeatedPassword').value = ""
             notification('error', 'one of the passwords fileds is empty')
         }
         else if (this.state.newPassword.length < 5 || this.state.repeatedPassword.length < 5) {
+            document.getElementById('newPassword').value = ""
+            document.getElementById('repeatedPassword').value = ""
             notification('error', 'one of the passwords is too short, should be 5 characters or more')
         }
-        else if (this.state.newPassword !== this.state.repeatedPassword) {
+        else if (this.state.newPassword !== this.state.repeatedPassword && (this.state.newPassword.length > 0 && this.state.newPassword.length > 0)) {
+            document.getElementById('newPassword').value = ""
+            document.getElementById('repeatedPassword').value = ""
             notification('error', 'passwords do not match')
         }
         else {
@@ -61,10 +69,14 @@ export default class ResetPassword extends Component {
                     repeatedPassword: '',
                     secret_code: ''
                 })
+                
             })
             .catch(error => {
                 if(error.response){
                     notification('error', error.response.data['message'])
+                    this.setState({newPassword:'', repeatedPassword:'', secret_code:''})
+                    document.getElementById('newPassword').value = ""
+                    document.getElementById('repeatedPassword').value = ""
                 }
             })
         }
@@ -90,12 +102,12 @@ export default class ResetPassword extends Component {
 
                         <div className="form-group">
                             <label >New password</label>
-                            <input type="password" name="newPassword" onChange={this.onChange} className="form-control" placeholder="Enter your new password" required />
+                            <input type="password" name="newPassword" id="newPassword" onChange={this.onChange} className="form-control" placeholder="Enter your new password" required />
                         </div>
 
                         <div className="form-group">
                             <label >Repeat password</label>
-                            <input type="password" name="repeatedPassword" onChange={this.onChange} className="form-control" placeholder="Enter password again" required />
+                            <input type="password" name="repeatedPassword" id="repeatedPassword" onChange={this.onChange} className="form-control" placeholder="Enter password again" required />
                         </div>
 
                         <div className="align-items-md-end">
