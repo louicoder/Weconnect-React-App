@@ -2,6 +2,10 @@ import React from 'react';
 import Notifications from 'react-notify-toast';
 import { MyBusinessActions } from '../business/MyBusinessActions'
 import {AllbusinessActions} from '../business/AllBusinessActions'
+import {EditBusinessModal} from '../business/EditBusinessModal'
+import {AddReviewModal} from '../business/AddReviewModal'
+import {ViewReviewsModal} from '../business/ViewReviewsModal'
+
 
 const MyBusinesses = ({ 
     name,
@@ -11,7 +15,7 @@ const MyBusinesses = ({
     review,
     reviews,
     businesses,
-    isAuthenticated, 
+    isAuthenticated,
     register_business, 
     onChange,
     onUpdateBusiness, 
@@ -37,116 +41,32 @@ const MyBusinesses = ({
                     </div>:''}
                     
                     {/* modal window for editing business */}
-                    <div className="modal fade" id="edit_modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
-                    <Notifications />
-                        <div className="modal-dialog modal-dialog-centered" role="document">
-                            <div className="modal-content">
-                            
-                            <div className="modal-body">
-                            <form action="#" method="" className="">
-                                <h5 className="text-muted">UPDATE YOUR BUSINESS</h5>
-                                <hr/>
-                                <div className="form-group">
-                                    <label>Business Name</label>
-                                    <input type="text" name="name" onChange={onChange} className="form-control" value={name} placeholder="Enter new business name" required/>
-                                </div>
-                                
-                                <div className="form-group">
-                                    <label>Enter new location</label>
-                                    <input type="text" name="location" onChange={onChange} className="form-control" value={location}  placeholder="Enter new business location"/>
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Enter new Category</label>
-                                    <input type="text" name="category" onChange={onChange} className="form-control" value={category}  placeholder="Enter new Business category"/>
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Enter new description</label>
-                                    <textarea name="description" onChange={onChange} className="form-control" value={description} rows="3" placeholder="Enter new description about your Business"></textarea>
-                                </div>
-                                
-                                
-                            </form>
-                                
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary" onClick={onUpdateBusiness}>Update Business</button>
-                                
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <EditBusinessModal
+                    onChange={onChange}
+                    name={name}
+                    location={location}
+                    category={category}
+                    description={description}
+                    onUpdateBusiness={onUpdateBusiness}
+                    />
+                    
                     {/* end of modal window */}
 
                     {/* modal window for adding new review to business */}
 
-                    <div className="modal fade" id="review_modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <Notifications />
-                        <div className="modal-dialog modal-dialog-centered" role="document">
-                            <div className="modal-content">
-                            
-                            <div className="modal-body">
-                            <form action="#" method="" className="" id="review_form">
-                                <h5 className="text-muted">ADD REVIEW FOR THIS BUSINESS</h5>
-                                <hr/>
-
-                                <div className="form-group">
-                                    <textarea name="review" onChange={onChange} className="form-control" rows="3" placeholder="Enter brief description about your Business" value={review}>{review}
-                                    </textarea>
-                                </div>
-                                
-                                
-                            </form>
-                                
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" name="add_review" className="btn btn-primary" onClick={addReview}>Review Business</button>
-                                
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                    <AddReviewModal
+                    review={review}
+                    onChange={onChange}
+                    addReview={addReview}
+                    />
 
                     {/* end of review business modal */}
 
                     {/* modal window for viewing a business reviews */}
 
-                    <div className="modal fade" id="view_reviews" tabIndex="-1" role="dialog" aria-labelledby="Title" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="Title">ALL reviews FOR THIS BUSINESS</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            {/* dynamic div created for each review */}
-                            <div className="modal-body">
-                                {reviews.map((review, index) => {
-                                    return(
-                                        <div className="card-body" key={index}>
-                                            <h6>REVIEW: {review.id}</h6>
-                                            <p key={review.id}></p>
-                                            <p>{review.review}</p>
-                                            <hr/>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                            {/* end of dynamic divs for each review */}
-
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ViewReviewsModal
+                    reviews={reviews}
+                    />
 
                     {/* end of modal window for a business viewing reviews */}
                     

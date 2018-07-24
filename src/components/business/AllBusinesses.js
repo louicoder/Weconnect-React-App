@@ -6,7 +6,6 @@ import Notifications from 'react-notify-toast';
 import {notification} from '../../helper/Utils'
 import all_businesses from '../../images/all_businesses.png'
 import {BASE_URL} from '../../helper/Url'
-// import {AllbusinessActions} from '../business/AllBusinessActions'
 import MyBusinesses from '../business/MyBusinesses'
 
 

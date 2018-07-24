@@ -36,7 +36,7 @@ class Registration extends Component {
             })
             .then(res =>{
                 this.props.history.push("/login");
-                notification("success", "successfully reset password")
+                notification("success", res.data['message'])
             })
             .catch((error) => {
                 if (error.response) {
@@ -99,7 +99,7 @@ class Registration extends Component {
                                         <button type="submit" onClick={this.onSubmit } className="btn btn-success btn-lg col-md-12">REGISTER</button>
                                     </div><br />
                                     {/* <a href="login.html">Already a user? Click to ?Login</a> */}
-                                    <Link to="/login">Already a user? Click to ?Login</Link>
+                                    <Link to="/login" className="page-link">Already registered? Click here to Login</Link>
                                 </form>
                                 
 
