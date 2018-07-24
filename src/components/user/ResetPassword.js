@@ -32,7 +32,7 @@ export default class ResetPassword extends Component {
     }
 
     onUpdate = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (this.state.secret_code.length === 0) {
             notification('error', 'Secret code field should not be left empty')
