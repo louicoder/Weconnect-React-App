@@ -19,8 +19,7 @@ export function userName(){
             return username;
         }
     }catch(Error){
-        const username = "louis"
-        return username;
+        return Error;
     }
 }
 

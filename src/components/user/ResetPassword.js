@@ -21,14 +21,11 @@ export default class ResetPassword extends Component {
     };
 
     componentDidMount() {
-        // console.log(this.props.match.params.username)
-        // console.log(this.state)
         
     }
 
     componentWillMount() {
-        // console.log(this.state)
-        // console.log(this.props.match.params.username)
+
     }
 
     onUpdate = (e) => {
@@ -59,7 +56,11 @@ export default class ResetPassword extends Component {
         }
         else {
             const username = this.props.match.params.username
-            axios.put(BASE_URL + 'api/auth/reset-password-email/' + username, { password: this.state.newPassword, secret_code:this.state.secret_code })
+            let progress = 0
+            axios.put(BASE_URL + 'api/auth/reset-password-email/' + username, { password: this.state.newPassword, secret_code:this.state.secret_code }, {onUploadProgress: progressEvent => {
+                progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
+                console.log(progress)}
+              })
             .then(res => {
                 this.props.history.replace('/login')
                 notification('success', res.data['message'])

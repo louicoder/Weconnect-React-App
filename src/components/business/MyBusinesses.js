@@ -1,10 +1,10 @@
 import React from 'react';
 import Notifications from 'react-notify-toast';
-import { MyBusinessActions } from '../business/MyBusinessActions'
-import {AllbusinessActions} from '../business/AllBusinessActions'
-import {EditBusinessModal} from '../business/EditBusinessModal'
-import {AddReviewModal} from '../business/AddReviewModal'
-import {ViewReviewsModal} from '../business/ViewReviewsModal'
+import { MyBusinessActions } from '../business/MyBusinessActions';
+import {AllbusinessActions} from '../business/AllBusinessActions';
+import {EditBusinessModal} from '../business/EditBusinessModal';
+import {AddReviewModal} from '../business/AddReviewModal';
+import {ViewReviewsModal} from '../business/ViewReviewsModal';
 
 
 const MyBusinesses = ({ 
@@ -101,8 +101,11 @@ const MyBusinesses = ({
                                             addReview= {addReview}
                                             viewReviews = {viewReviews}
                                         />
+                                        
                                         }
                                     </div>
+
+
                                     
                                 )})
                         }

@@ -53,6 +53,7 @@ export default class AllBusinesses extends Component{
     addReview = () => {
         const id =this.state.id;
         const review = this.state.review;
+        console.log(id, review)
         if(review === ""){
             notification("warning", "Field is empty")
         }else{
@@ -100,6 +101,8 @@ export default class AllBusinesses extends Component{
             this.state.isAuthenticated ? 
             <div className="container">
             <Notifications/>
+
+            
             <br/><br/>
                 <div className="container col-md-12">
                     <div className="row">

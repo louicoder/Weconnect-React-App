@@ -6,6 +6,7 @@ import Notifications from 'react-notify-toast';
 import {notification} from '../../helper/Utils';
 import {BASE_URL} from '../../helper/Url'
 import {ResetPasswordModal} from '../user/ResetPasswordModal'
+import loading from '../../images/loading.gif'
 
 class Login extends Component {
     
@@ -13,7 +14,10 @@ class Login extends Component {
         password:"",
         username:"",
         message:"",
-        color:""
+        color:"",
+        email:"",
+        visibility: "none",
+        id : "email"
     };
 
     onChange = (e) =>{
@@ -22,42 +26,83 @@ class Login extends Component {
         });
     }
 
+    onClose = () => {
+        this.setState({message:"",email:""})
+    }
+
     componentDidMount = ()=>{
         isAuthenticated();
     }
-    
-    onSendEmail = () => {
-        https://weconnect-react-app.herokuapp.com/
-        axios.post(BASE_URL+'api/auth/reset-password-email/'+this.state.username)
-        .then(res =>{
-            this.setState({message:res.data['message'], color:'success',username:''})
-            notification('success', this.state.message)
-        })
-        .catch(error =>{
-            if(error.response){
-                this.setState({
-                    message:error.response['data']['message'],
-                    color:'danger',
-                    username:''
-                })
-                notification("error", error.response['data']['message'])
-            }
-        })
 
+    onForgotPassword = () => {
+        this.setState({message:''})
+    }
+
+    onClear = () => {
+        this.setState({email:""})
+    }
+    
+    onSendEmail = (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        if (!this.state.email.includes('.') || !this.state.email.includes('@')){
+            this.setState({
+                message:'The email is invalid, it should include . and @ symbols',
+                color:'danger'
+            })
+            notification('error', 'The email is invalid, it should include a dot and @ symbols')
+        }
+        else{
+            // set the loading image
+            this.setState({
+                visibility:'inline'
+            })
+            axios.post(BASE_URL+'api/auth/reset-password-email',{'email':this.state.email})
+            .then(res =>{
+                this.setState({visibility:"none"})
+                document.getElementById('email').value = ''
+                this.setState({message:res.data['message'], color:'success',username:'',email:""})
+                notification('success', this.state.message)
+            })
+            .catch(error =>{
+                this.setState({visibility:"none"})
+                document.getElementById('email').value = ''
+                if(error.response){
+                    this.setState({message:""})
+                    this.setState({
+                        message:error.response['data']['message'],
+                        color:'danger',
+                        username:'',
+                        email:""
+                    })
+                    // console.log(this.state)
+                    notification("error", error.response['data']['message'])
+                }
+            })
+            
+        }
+        this.setState({email:""})
     }
 
     login = (e) =>{
         e.preventDefault()
-        axios.post(BASE_URL+'api/auth/login',{username: this.state.username,password: this.state.password})
-        .then(res =>{
-            localStorage.setItem('token', res.data['token']);
-            this.props.history.replace('/business');
-        })
-        .catch(error =>{
-            if(error.response){
-                notification("error", error.response['data']['message'])
-            }
-        })
+        if(this.state.username.length === 0 || this.state.password.length === 0)
+            notification('warning', 'Both filled should be filled in, try again')
+        else{
+            axios.post(BASE_URL+'api/auth/login',{username: this.state.username,password: this.state.password})
+            .then(res =>{
+                localStorage.setItem('token', res.data['token']);
+                this.props.history.replace('/business');
+            })
+            .catch(error =>{
+                if(error.response){
+                    document.getElementById('username').value = ''
+                    document.getElementById('password').value = ''
+                    notification("error", error.response['data']['message'])
+                }
+            })
+        }
+        
     }
 
     //function renders the login component onto the html page
@@ -76,8 +121,12 @@ class Login extends Component {
                             onSendEmail = {this.onSendEmail}
                             message = {this.state.message}
                             change = {this.onChange}
-                            username = {this.state.username}
                             color = {this.state.color}
+                            visibility = {this.state.visibility}
+                            loading = {loading}
+                            onClose = {this.onClose}
+                            email = {this.state.email}
+                            id = {this.state.id}
                             />
                         {/* end of modal window for password reset*/}
 
@@ -88,12 +137,12 @@ class Login extends Component {
                                 <hr/>
                                 <div className="form-group">
                                     <label >Username</label>
-                                    <input type="text" name="username" onChange={this.onChange} className="form-control" placeholder="Enter Your Username" required/>
+                                    <input type="text" name="username" id="username" onChange={this.onChange} className="form-control" placeholder="Enter Your Username" required/>
                                 </div>
 
                                 <div className="form-group">
                                     <label >Password</label>
-                                    <input type="password" name="password" onChange={this.onChange} className="form-control" placeholder="Enter Your Password"/>
+                                    <input type="password" name="password" id="password" onChange={this.onChange} className="form-control" placeholder="Enter Your Password"/>
                                 </div>
 
                                 <div className="align-items-md-end">
@@ -104,7 +153,7 @@ class Login extends Component {
 
                                 <div className="row justify-content-center">
                                 <Link to="/register" className="page-link">Not Registered?</Link><br/>
-                                <a href="" className="page-link ml-2" data-target="#reset_password" data-toggle="modal">Forgot Password?</a> 
+                                <a href="" className="page-link ml-2" data-target="#reset_password" onClick={this.onForgotPassword} data-toggle="modal">Forgot Password?</a> 
                                 </div>
                                 
                             </form><br/>

@@ -19,7 +19,8 @@
     "react-notify-toast": "^0.5.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-test-renderer": "^16.4.1"
+    "react-test-renderer": "^16.4.1",
+    "react-webcam": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,6 +43,8 @@
       "!src/components/business/SearchBusinesses.js",
       "!src/components/user/ResetPassword.js",
       "!src/components/user/ResetPasswordModal.js",
+      "!src/components/user/CapturePhoto.js",
+      "!src/components/user/Profile.js",
       "!src/components/user/Login.js",
       "!src/components/business/ViewReviewsModal.js",
       "!src/components/business/AddReviewModal.js",

@@ -8,6 +8,7 @@ import MyBusinesses from '../containers/MyBusinesses';
 import SearchBusinesses from '../components/business/SearchBusinesses';
 import Profile from '../components/user/Profile';
 import ResetPassword from '../components/user/ResetPassword'
+import CapturePhoto from '../components/user/CapturePhoto';
 
 
 const Routes = () =>(
@@ -25,6 +26,7 @@ const Routes = () =>(
             <Route exact path="/reset-password-email/:username" component={ResetPassword}/>
             <Route exact path="/reset-password-email/" component={Login}/>
             <Route exact path="/reset-password-email" component={Login}/>
+            <Route exact path="/capture" component={CapturePhoto}/>
 
         </Switch>
     </div>
